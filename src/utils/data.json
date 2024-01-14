@@ -1,0 +1,518 @@
+{
+  "common": {
+    "txt_account": "Account",
+    "txt_deposit": "Deposit",
+    "txt_exchange_rate": "Exchange Rate",
+    "txt_total": "Total",
+    "txt_follow_instruction": "Please follow instruction below to perform the payment: ",
+    "txt_payment_success": "Payment Successful",
+    "txt_social_trading_acc": "Social Trading Account",
+    "txt_cancel": "Cancel",
+    "txt_confirm": "Confirm",
+    "txt_system_busy": "The system is busy, please try again later",
+    "txt_submit": "Submit",
+    "txt_please_enter_content": "Please enter the content",
+    "txt_coupon": "Coupon",
+    "txt_actual": "Actual Payment",
+    "txt_pay": "Pay",
+    "txt_bank_branch": "Bank Branch",
+    "txt_IFSC": "IFSC",
+    "txt_ifsc_code": "IFSC Code",
+    "txt_aus_bank_name": "Australian Bank Name",
+    "txt_bank_name": "Bank Name",
+    "txt_acc_name": "Account Name",
+    "txt_acc_num": "Account Number",
+    "txt_transfer_receipt": "Transfer Receipt",
+    "txt_upload_receipt": "Upload Receipt",
+    "txt_retake": "Retake",
+    "txt_please_upload": "Please upload your bank transfer receipt",
+    "txt_important_notes": "Important Notes",
+    "txt_net_amount": "Net amount to pay",
+    "txt_transfer_info": "Transfer information",
+    "txt_copy": "Copy",
+    "txt_copy_success": "Copy success",
+    "txt_bank_transfer": "BANK TRANSFER",
+    "txt_bank_detail": "Bank Details",
+    "txt_bank_address": "Bank Address",
+    "txt_country_region": "Country/Region",
+    "txt_accnum_iban": "Account Number/IBAN",
+    "txt_account_holder_address": "Account Holder's Address",
+    "txt_swift": "SWIFT",
+    "txt_currency": "Currency",
+    "txt_bsb_number": "BSB Number",
+    "txt_beneficiary_name": "Beneficiary Name",
+    "txt_beneficiary_card_number": "Beneficiary card number",
+    "txt_beneficiary_account_number": "Beneficiary Account Number",
+    "txt_beneficiary_account_name": "Beneficiary Account Name",
+    "txt_beneficiary_address": "Beneficiary Address",
+    "txt_branch_name": "Branch Name",
+    "txt_branch_address": "Branch Address",
+    "txt_aba_sort": "ABA/Sort Code",
+    "txt_sort_code": "Sort Code",
+    "txt_iban": "IBAN",
+    "txt_important": "*Important",
+    "txt_please_upload_remark": "Please upload a screenshot, photo or scanned copy of your bank transfer receipt",
+    "txt_please_upload_remark2": "Please upload a screenshot, photo or scanned copy of your bank statement (current to the last3 months)",
+    "txt_upload_remark": "Please ensure that clearly shows your full name, account number, and deposit amount so we can process your transaction.",
+    "txt_lower_limit": "*Your deposit should not be lower than {value} {currency}",
+    "txt_fund_appear": "Your funds will appear once your funds are verified. (Within 24 hours)",
+    "txt_payment_bank": "Payment bank",
+    "txt_select_payment_channel": "Select Payment Channel",
+    "txt_please_include_trade": "Please include your STARTRADER trading account number in the bank transfer reference field.",
+    "txt_please_include_trade1": "Please include your STARTRADER trading account number in the bank transfer reference field.",
+    "txt_please_include_trade2": "Please include your STARTRADER trading account number or full name in the bank transfer reference field.",
+    "txt_amount": "Amount",
+    "txt_phone_number": "Phone Number",
+    "txt_mobile_number": "Mobile Number",
+    "txt_enter_phone_number": "Please enter the Phone Number",
+    "txt_success": "Success",
+    "txt_fail": "Fail",
+    "txt_back": "Back",
+    "txt_withdraw_success": "Withdraw application success",
+    "txt_withdraw_failed": "Withdraw application failed",
+    "txt_withdrawal_request_success": "Your withdrawal request was successful and will be processed within 1-2 business days",
+    "txt_fail_to_submit": "Fail to submit",
+    "txt_bank_beneficiary_name": "Bank Beneficiary Name",
+    "txt_bank_account_name": "Bank Account Name",
+    "txt_bank_account_number": "Bank Account Number",
+    "txt_document_type": "Document Type",
+    "txt_document_detail": "Document Details",
+    "txt_remember_account": "Remember my account",
+    "txt_email": "Email",
+    "txt_bank_province": "Bank Province",
+    "txt_bank_city": "Bank City",
+    "txt_bank_statements_three_month": "Bank statements for the last three months",
+    "txt_branch_code": "Branch Code",
+    "txt_reimburse_bank_fee": "Startrader will reimburse the bank fee charged for ONE withdrawal per month. Additional withdrawals within the month will incur a bank fee of 20 units of your withdrawal currency.",
+    "txt_proceed": "Proceed",
+    "txt_tncs": "T&Cs",
+    "txt_please_select": "Please Select",
+    "txt_upload_max": "Upload up to 6 photos",
+    "txt_please_select_bank": "Please select a bank",
+    "txt_sa_intro": "Join over 100,00 other clients already trading with one of the fastest growing brokers",
+    "txt_sms_code": "SMS code",
+    "txt_verification_code": "Verification code",
+    "txt_select_country": "Select Country",
+    "txt_search": "Search",
+    "txt_register_telephone": "This mobile number has been registered",
+    "txt_verfication_fail": "verification code failed to send",
+    "txt_your_phone": "Please enter your phone number",
+    "txt_correct_phone": "Please enter the correct phone number",
+    "txt_second": "s to reacquire",
+    "txt_correct_verfication_code": "Please enter the correct verification code",
+    "txt_enter_name": "First Name",
+    "txt_enter_surname": "Last Name",
+    "txt_agreement": "Registration Agreement",
+    "txt_agree_to_the": "I have read and agreed to the",
+    "txt_not_yet_agree": "You have not yet agreed to the registration agreement!",
+    "txt_please_last_name": "Please enter last name",
+    "txt_please_name": "Please enter the name",
+    "txt_phone_invalid": "Not a valid mobile number",
+    "txt_invalid_code": "Invalid verification code",
+    "txt_registered_success": "Registration has been successful",
+    "txt_open_virtual_acc": "Successfully created a Demo Account",
+    "txt_open_real_acc": "Apply a Live acount to enjoy more trade and promotion!",
+    "txt_download_app": "Download APP",
+    "txt_download": "Download",
+    "txt_error": "An error occurred",
+    "txt_next": "Next",
+    "txt_request_aborted": "Reqeust aborted",
+    "txt_field_required": "This field is required",
+    "txt_field_mandatory": "This field is mandatory",
+    "txt_xx_mandatory": " is mandatory",
+    "txt_must_valid_email": "This field must be a valid email",
+    "txt_failed": "Failed",
+    "txt_characters": "characters",
+    "txt_name_of_cardholder": "Name of card holder",
+    "txt_id_number": "ID Number",
+    "txt_reserved_phone_number": "Reserved Phone Number",
+    "txt_card_photo": "Card Photo",
+    "txt_add_card": "Add Card",
+    "txt_submit_success": "Submitted successfully. Your application is currently being processed",
+    "txt_no_space": "No spaces allowed",
+    "txt_min_uppercase": "Min. 1 uppercase",
+    "txt_min_lowercase": "Min. 1 lowercase",
+    "txt_min_number": "Min. 1 number",
+    "txt_min_special_char": "Min. 1 special character: !{'@'}#$%^&*",
+    "txt_other_special_char": "Allowed special characters: !{'@'}#$%^&*",
+    "txt_empty_string": "Empty string",
+    "txt_enter_transaction_pw": "Enter transaction password",
+    "txt_payment_pw": "Transaction password",
+    "txt_incorrect_payment_pw": "Incorrect transaction password",
+    "txt_reset_pw": "Reset password",
+    "txt_read_more": "Read more",
+    "txt_name": "Name",
+    "txt_acc_holder_name": "Account Holder's Name",
+    "payment_method_category": [
+      {
+        "0": "All"
+      },
+      {
+        "1": "Online Payment"
+      },
+      {
+        "2": "Local Bank"
+      },
+      {
+        "3": "Crypto Pay"
+      },
+      {
+        "4": "E-Wallet"
+      },
+      {
+        "5": "Credit Card"
+      },
+      {
+        "6": "Wire Transfer"
+      }
+    ],
+    "txt_no_data": "No data",
+    "txt_reminder": "Reminder",
+    "txt_invalid_input": "Invalid input",
+    "txt_password": "Password",
+    "txt_invitation_code": "Invitation Code (If any)",
+    "txt_register": "Register",
+    "txt_congrats": "Congratulations",
+    "txt_bank": "Bank",
+    "txt_country": "Country",
+    "txt_upload": "Upload",
+    "txt_remark": "Remark",
+    "txt_copied": "Copied",
+    "txt_remarks": "Remarks",
+    "txt_select": "Select",
+    "txt_please_enter": "Please enter",
+    "txt_card_number": "Card number",
+    "txt_cvv": "CVV code",
+    "txt_card_holder_name": "Name of card holder",
+    "txt_valid_until_month": "Valid until (Month)",
+    "txt_valid_until_year": "Valid until (Year)",
+    "txt_payment_brand": "Payment brand",
+    "txt_beneficiary_ewallet_address": "Beneficiary's e-wallet address",
+    "txt_email_login": "Email Login",
+    "txt_wrong_mobile_number_format": "Incorrect mobile number format",
+    "txt_wrong_email_format": "Incorrect email format",
+    "txt_bic": "BIC"
+  },
+  "deposit": {
+    "txt_deposit_success": "Deposit success",
+    "txt_deposit_failed": "Deposit failed",
+    "txt_deposit_agreement": "I understand the \"Notice for Deposit\": the platform does not accept any deposit from third parties. Please ensure the name here must be the same as the name of the deposit card holder. If the name does not match with the funds, the funds may be frozen or refunded. The responsibility of any delay or loss of deposit because of the above reason should be borne by the account holder. Thank You.",
+    "txt_method": "Method",
+    "txt_please_number": "Please enter number",
+    "txt_select_method": "Please select the deposit method",
+    "txt_amount_incorrect": "Deposit amount incorrect",
+    "txt_min_amount": "Minimum amount",
+    "txt_service_charge": "Service charge",
+    "txt_account_holder": "Bank Account Holder Name",
+    "txt_amount_received": "Amount received",
+    "txt_payment_amount": "Payment amount",
+    "txt_note": "You can deposit the margin in your live trading account through debit cards, credit cards, local payments, or bank transfer. PLease deposit funds in the trading account currency of STARTRADER",
+    "txt_summary_note": "This amount is reference only, the actual amount is subject to the amount received",
+    "txt_select_account": "Please select account",
+    "wireTransfer": {
+      "txt_reminder": [
+        "Please note that we do not accept any forms of cash wire transfer. Only electronic wire transfer is accepted. Otherwise, your deposit will be rejected.",
+        "After the transfer is completed, please send your wire transfer receipt to info{'@'}startrader.com or your consultant in the official website. The action accelerate the settlement of the transfer, Thank You.",
+        "Note: Please use your account currency for deposit. For example, for USD account - use USD bank account details for deposit. Please refer to the following options. You need a contact a financial institution for wire transfer or use online banking for online transfer. After completing the transfer, please return to this page and upload the receipt to facilitate our staff to process your deposit."
+      ],
+      "txt_note": "This amount is reference only, the actual amount is subject to the amount received",
+      "txt_upload_paybook": "Upload cover of bank passbook",
+      "txt_upload_slip": "Upload wire transfer pay-in slip",
+      "txt_please_upload_paybook": "Please upload cover of bank passbook",
+      "txt_please_upload_slip": "Please upload wire transfer pay-in slip"
+    },
+    "cny": {
+      "txt_note": "The maximum amounts for deposit: 7000 USD",
+      "txt_record_phone_number": "*Mobile number as per our record:",
+      "txt_not_yet_agree": "You have not yet agreed to the agreement!"
+    },
+    "eeziepay": {
+      "txt_bank_list": "Bank list"
+    },
+    "banxa": {
+      "txt_payment_brand": "Payment Brand",
+      "txt_reminder": [
+        "1. Please note that Banxa is a Crypto trading platform, after redirecting to the page you will be required to pay by Credit Card/ IDEAL for USDT",
+        "2. The USDT will be received by STARTRADER.",
+        "3. The amount will be credited to your account based on the order created; regardless how much USDT STARTRADER received.",
+        "4. KYC verification is required for new and first-timer user.",
+        "5. Fund withdrawal will be process through USDT or Bank Wire Transfer. USDT received can be sold via Banxa in order to receive your local currencies."
+      ]
+    },
+    "solidpay": {
+      "txt_note": "The charge will appear as startrader.com. For information on your transaction, please contact us startrader.com at +2482632029. STARTRADER is registered in Cyprus with registration number HE 421001, registered address is 62 Athalassas, Mezzanine, Strovolos, 2012, Nicosia, Cyprus.",
+      "txt_no_more": "No more than 20-digit number"
+    },
+    "localBankTransfer": {
+      "txt_reminder": [
+        "Please note that we do not accept any forms of cash wire transfer. Only electronic wire transfer from your own bank account is accepted, or else it will lead to a deposit failure.",
+        "Please upload a copy of transfer pay-in slip and bank passbook after a transaction is made. Otherwise, we might not be able to process the transaction.",
+        "*There might be a difference between the funds that were sent and what you received in trading account due to the change in exchange rate."
+      ],
+      "txt_note": "The exchange rate displayed on the platform is only for indicating purpose.",
+      "txt_upload_paybook": "Upload cover of bank passbook",
+      "txt_upload_slip": "Upload wire transfer pay-in slip",
+      "txt_please_upload_paybook": "Please upload cover of bank passbook",
+      "txt_please_upload_slip": "Please upload wire transfer pay-in slip",
+      "txt_beneficiary_name": "Beneficiary Name",
+      "txt_beneficiary_address": "Beneficiary Address",
+      "txt_beneficiary_bank_name": "Beneficiary Bank Name",
+      "txt_beneficiary_bank_swift": "Beneficiary Bank Swift#",
+      "txt_beneficiary_bank_account": "Beneficiary Bank Account#"
+    },
+    "virtualpay": {
+      "txt_surname": "Surname",
+      "txt_given_name": "Given name",
+      "txt_phone": "Phone",
+      "txt_email": "Email",
+      "txt_id_number": "ID Number",
+      "txt_country": "Country",
+      "txt_city": "City",
+      "txt_postcode": "Postcode",
+      "txt_state": "State",
+      "txt_please_select": "Please Select"
+    }
+  },
+  "withdrawal": {
+    "txt_note": "This amount is reference only, the actual amount is subject to the amount received",
+    "asiaPayment": {
+      "txt_accountid_email": "Account ID or Email",
+      "txt_bank_list": "Bank list",
+      "txt_record_phone_number": "Mobile number as per our record:",
+      "txt_surname": "Surname",
+      "txt_given_name": "Given name",
+      "txt_phone": "Phone",
+      "txt_beneficiary_account_number": "Beneficiary account number",
+      "txt_city": "City",
+      "txt_branch": "Branch",
+      "txt_valid_period": "Bank card validity period"
+    },
+    "astropay": {
+      "txt_astropay": "Astropay Account",
+      "txt_enter_astropay": "Please enter the Astropay account"
+    },
+    "bitcoin": {
+      "txt_usdt_wallet_address": "USDT Wallet Address",
+      "txt_bitcoin_wallet_address": "Bitcoin Wallet Address"
+    },
+    "brazil": {
+      "txt_pix_key_type": "PIX Key Type",
+      "txt_pix_key": "PIX Key"
+    },
+    "card": {
+      "txt_name_on_card": "Name on Card",
+      "txt_first_6_digits": "First 6 Digits on Card",
+      "txt_last_4_digits": "Last 4 Digits on Card"
+    },
+    "cardlist": {
+      "txt_select": "Select"
+    },
+    "disclaimer": {
+      "txt_rule1": "Due to AML / CTF laws, STARTRADER cannot deposit funds to third parties. All money withdrawn from your account must go to a bank or Moneybookers account in the same name as your STARTRADER trading account.",
+      "txt_rule2": "STARTRADER does not accept deposits or withdrawals made under a different name to the registered trading account.",
+      "txt_rule3": "It is the client's responsibility to ensure there are sufficient funds available for the withdrawal request to be processed. Failing to maintain sufficient balance in the account may result in the rejection of the withdrawal request.",
+      "txt_rule4": "All initial credit/debit card and bank wire withdrawal requests must be verified for safety and security by the provision of a bank statement; which includes account holder information and bank details.",
+      "txt_rule5": "All initial Moneybookers and E-wallet (Skrill, Neteller, Fasapay, etc.) withdrawal requests must be verified for safety and security by the provision of an account statement; which includes account holder information and bank details.",
+      "txt_rule6": "Clients acknowledge that they may be required to provide information on the source(s) of the deposit(s) and/or the Clients’ wealth in general when processing a withdrawal request and agree to provide all information required by STARTRADER. Failure to provide the required information may result in significant delays in the process of your requests.",
+      "txt_rule7": "STARTRADER reserves the rights to refuse to process a withdrawal request if it has reasonable grounds to believe that the trading account may turn into a negative balance after the withdrawal request is processed.",
+      "txt_rule8": "STARTRADER reserves the right to refuse a withdrawal request if the trading account is subject to a charge-back or any other on-going investigation.",
+      "txt_rule9": "STARTRADER is not responsible for any fees that the receiving financial institution or third-party payment providers may charge you for receiving payments.",
+      "txt_rule10": "Withdrawing funds while you have open positions will affect your margin. Please ensure you close open positions, or ensure you leave sufficient funds in your account to avoid a margin call.",
+      "txt_rule11": "Any additional fees from your intermediary bank that may apply are not covered by STARTRADER."
+    },
+    "disclaimer_svg": {
+      "txt_rule1": "Clients should read this Terms and Conditions carefully. If you click on the withdrawal button on the platform, you are deemed to have seen, understood, and acknowledged the Terms and Conditions.",
+      "txt_rule2": "Clients provide their bank card, bank branch, and other related information to apply for withdrawal(s), clients should be responsible if the bank information was submitted incorrectly.",
+      "txt_rule3": "To waive the handling fees, clients must submit a withdrawal application more than USD 50 in amount on the platform. If the withdrawal request is less than USD 50, the client must bear the handling fee of USD 15 (or equivalent to the foreign currency) charged by the bank.",
+      "txt_rule4": "For Skrill and Neteller, only the first withdrawal request of each month can enjoy free handling fee. After that, each withdrawal application will be charged USD 15 of handling fee.",
+      "txt_rule5": "If the withdrawal information submitted by clients on the platform is incomplete, STARTRADER reserves the right to refuse the withdrawal, and clients need to resubmit the withdrawal application.",
+      "txt_rule6": "Clients should carefully notice the balance on trading account(s) to avoid any possibility that withdrawal amount(s) might affect any open position(s).",
+      "txt_rule7": "Withdrawal requests for transfer to any third party will not be processed."
+    },
+    "disclaimer_fsa": {
+      "txt_rule1": "Clients should read this Terms and Conditions carefully. If you click on the withdrawal button on the platform, you are deemed to have seen, understood, and acknowledged the Terms and Conditions.",
+      "txt_rule2": "Clients provide their bank card, bank branch, and other related information to apply for withdrawal(s), clients should be responsible if the bank information was submitted incorrectly.",
+      "txt_rule3": "To waive the handling fees, clients must submit a withdrawal application more than USD 50 in amount on the platform. If the withdrawal request is less than USD 50, the client must bear the handling fee of USD 15 (or equivalent to the foreign currency) charged by the bank.",
+      "txt_rule4": "If the withdrawal information submitted by clients on the platform is incomplete, STARTRADER reserves the right to refuse the withdrawal, and clients need to resubmit the withdrawal application.",
+      "txt_rule5": "Clients should carefully notice the balance on trading account(s) to avoid any possibility that withdrawal amount(s) might affect any open position(s).",
+      "txt_rule6": "Withdrawal requests for transfer to any third party will not be processed."
+    },
+    "ewallet": {
+      "txt_skrill": "Skrill Email",
+      "txt_sticpay": "Sticpay Email",
+      "txt_bitwallet": "Bit Wallet Email",
+      "txt_neteller": "Neteller Email"
+    },
+    "fasapay": {
+      "txt_fasapay_account_number": "FasaPay account (FP+Number)"
+    },
+    "skrill": {
+      "txt_skrill_account": "Skrill account"
+    },
+    "neteller": {
+      "txt_neteller_account": "Neteller Account"
+    },
+    "solidpay": {
+      "txt_solidpay_credit_card_number": "credit card number"
+    },
+    "virtualpay": {
+      "txt_solidpay_credit_card_number": "credit card number"
+    },
+    "hongkong": {
+      "txt_bank_code": "Bank Code"
+    },
+    "index": {
+      "txt_withdraw": "Withdraw",
+      "txt_minimum": "Min.",
+      "txt_withdraw_remarks": "Withdrawal of funds may effect margin requirements for open position",
+      "txt_hold_position": "Account hold position, withdraw may be the cause of the loss",
+      "txt_restricted": "{value} is restricted from submitting because the activity does not meet the standard",
+      "txt_balances_withdraw": "Balances under {value} must be withdrawn in full.",
+      "txt_minimum_amount1": "Minimum withdraw amount is {value}",
+      "txt_minimum_amount2": "Minimum withdrawal amount is {value}",
+      "txt_maximum_amount": "Maximum withdraw amount is {value}",
+      "txt_credit_card_no_longer_accept": "We are sorry to inform you that we are no longer accepting credit card withdrawal requests from now on.We will transfer your funds to your bank account via bank wire transfer.",
+      "txt_is_position1": "You have an open position(s) in your account. To withdraw your cash, you are required to close the position(s).",
+      "txt_is_position2": "You have an open position(s) in your account. To withdraw your cash, you are required to close the position(s). For more info, please read",
+      "txt_no_position1": "You can only withdraw up to [{value}] of the profits made from the credit bonus. Profits exceeding this amount will be automatically removed upon withdrawal. ",
+      "txt_no_position2": "You can only withdraw up to [{value}] of the profits made from the credit bonus. Profits exceeding this amount will be automatically removed upon withdrawal. For more info, please read",
+      "txt_card_expiry": "Card Expiry",
+      "txt_withdraw_instruction1": "Due to AML/CTF compliance, funds must be transferred to the card used for your initial deposit",
+      "txt_withdraw_instruction2": "If the card used to fund your account is unavailable, please contact {value}",
+      "txt_withdraw_method": "Withdraw Method",
+      "txt_insufficient_fund": "Insufficient funds",
+      "txt_please_agree_terms": "Please read and agree to the terms and conditions",
+      "txt_add_bank_account": "Add Bank Account",
+      "txt_select_withdraw_method": "Please select the withdraw method",
+      "txt_please_enter_amount": "Please enter number",
+      "txt_agree_to_the": "I have read and agreed to the",
+      "txt_disclaimer": "Disclaimer",
+      "txt_withdrawal_disclaimer": "Withdrawal disclaimer",
+      "txt_read_agree_tc": "Please read and agree to the following Terms and Conditions.",
+      "txt_balance": "Balance",
+      "txt_method_more": "More",
+      "txt_bank_card_selection": "Bank card selection",
+      "txt_add_bank_card": "+Add bank card",
+      "txt_withdraw_amount": "Withdraw amount",
+      "txt_amount_received": "Amount received",
+      "txt_service_charge": "Service charge",
+      "txt_sure_close": "Are you sure to close it?",
+      "txt_add_bank_card_title": "Add bank card",
+      "txt_add_china_unionpay": "Add China Unionpay",
+      "txt_please_number": "Please enter number"
+    },
+    "mexico": {
+      "txt_account_type": "Account Type",
+      "txt_account_details": "Account Details"
+    },
+    "otp_authentication": {
+      "txt_2_fact": "2-Factor Aunthentication",
+      "txt_title_desc": "Verification code has been sent to",
+      "txt_send_code": "Send Code",
+      "txt_resend_button": "Resend",
+      "txt_resend_code": "Resend Code in {value} seconds",
+      "txt_verification_code_correct": "Verification code is correct",
+      "txt_verification_code_invalid": "Verification code is invalid",
+      "txt_verification_code_required": "Verification code is required",
+      "txt_details": "This helps show that this account really belongs to you"
+    },
+    "paypal": {
+      "txt_wallet_id": "Wallet ID"
+    },
+    "thaibank": {},
+    "summary": {
+      "txt_reminder_1": "Acceptance of Terms: By using this app, you agree to comply with these terms and conditions and our privacy policy. If you do not agree, please refrain from using the app.",
+      "txt_reminder_2": "User Account: To use certain features, you may be required to create a user account. You must provide accurate and truthful information during the account registration process."
+    },
+    "eeziepay": {
+      "txt_nameOfAcct": "Name of Account",
+      "txt_beneficiaryAcctNum": "Beneficiary account number",
+      "txt_province": "The branch of the opening bank (province)",
+      "txt_city": "The branch of the opening bank (city)",
+      "txt_opening_bank": "The opening bank"
+    },
+    "pagsmile": {
+      "txt_beneficiary_name": "Beneficiary Name",
+      "txt_phone": "Phone",
+      "txt_method": "Method",
+      "txt_cert_doc_type": "Certificate / Document Type",
+      "txt_national_document_cpf": "National ID / Document Number / CPF",
+      "txt_account_type": "Account Type",
+      "txt_payment_code": "Payment Code",
+      "txt_bank_list": "Bank list",
+      "txt_bank_account": "Bank Account",
+      "txt_region": "Region"
+    },
+    "reminder": {
+      "txt_reminder_1": "Terms and conditions",
+      "txt_reminder_2": "When withdrawing to an overseas bank, the bank will charge an interbank transfer fee of $15 USD or equivalent.",
+      "txt_reminder_3": "Risk Warning",
+      "txt_reminder_4": "The withdrawal amount will be deducted in your existing trading account after the submission of withdrawal request. This might result in lower margin for your positions and might cause margin out. You should carefully consider your risk tolerance level and financial situation prior making any decision."
+    },
+    "wireTransfer": {
+      "txt_beneficiacy_bank_card_number": "Beneficiary bank card number",
+      "txt_beneficiary_bank_name": "Beneficiary Bank Name",
+      "txt_type_of_bank_card": "Type of bank card",
+      "txt_mobile": "Mobile number as per our record",
+      "txt_beneficiary_bank_address": "Beneficiary Bank Address"
+    },
+    "unionpay": {
+      "txt_beneficiacy_bank_card_number": "Beneficiary bank card number"
+    }
+  },
+  "protocol": {
+    "txt_live_account_tnc": "Live Account Terms and Conditions",
+    "txt_client_agreement": "Client Agreement",
+    "txt_complaints_procedure_policy": "Complaints Procedure Policy",
+    "txt_privacy_security_policy": "Privacy Security Policy"
+  },
+  "news": {
+    "txt_newsletter": "Newsletter",
+    "txt_data_source": "Data source",
+    "txt_disclaimer": "STARTRADER doesn’t represent that the material provided here is accurate, current or complete, and therefore shouldn’t be relied upon as such. The information provided here is from a third party and isn’t to be considered as a recommendation; or an offer to buy or sell; or the solicitation of an offer to buy or sell any security, financial product or instrument; or to participate in any particular trading strategy. We advise any readers of this content to seek their own advice. Without the approval of STARTRADER, reproduction or redistribution of this information isn’t permitted.",
+    "txt_published_on": "Published on",
+    "analysis": {
+      "txt_datasource": "Data source: ",
+      "txt_extraReminder": "STARTRADER doesn’t represent that the material provided here is accurate, current or complete, and therefore shouldn’t be relied upon as such. The information provided here is from a third party and isn’t to be considered as a recommendation; or an offer to buy or sell; or the solicitation of an offer to buy or sell any security, financial product or instrument; or to participate in any particular trading strategy. We advise any readers of this content to seek their own advice. Without the approval of STARTRADER, reproduction or redistribution of this information isn’t permitted.",
+      "txt_publish": "Published on",
+      "txt_alldata": "All data has been loaded",
+      "txt_reply": "Reply",
+      "txt_no_content": "This article does not exist yet",
+      "txt_success": "Successful",
+      "txt_failed": "Failed",
+      "txt_please_comment": "Please enter the comment content",
+      "txt_submit": "Submit",
+      "txt_add_comment": "Add a comment",
+      "txt_comment_empty": "Comment cannot be empty",
+      "txt_comments": "Comments"
+    },
+    "txt_announcement": "Announcement",
+    "txt_greetings": "Dear client,"
+  },
+  "echarts": {
+    "txt_total_trades": "Total Trades",
+    "txt_symbols_traded": "Symbols Traded",
+    "txt_weekly_volume_traded": "Weekly Volume Traded",
+    "txt_trade_volume": "Trade Volume",
+    "txt_profitable_trade_volume": "Profitable Trade Volume",
+    "txt_weekly_pnl": "Weekly PnL",
+    "txt_long_positions": "Long Positions",
+    "txt_short_positions": "Short Positions",
+    "txt_trade_summary": "Trade Summary",
+    "txt_market_orders": "Market Orders",
+    "txt_pending_orders": "Pending Orders",
+    "txt_win_percentage": "Win %",
+    "txt_loss_percentage": "Loss %",
+    "txt_trading_hours": "Trading Hours",
+    "txt_profitable_long_trades": "Profitable Long Trades",
+    "txt_profitable_short_trades": "Profitable Short Trades",
+    "txt_weekly_activity": "Weekly Activity",
+    "txt_logins": "Logins",
+    "txt_comments": "Comments",
+    "txt_likes": "Likes",
+    "txt_posts": "Posts",
+    "txt_deposits": "Deposits",
+    "txt_trades": "Trades",
+    "txt_times": "Times"
+  }
+}
