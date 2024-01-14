@@ -3,6 +3,7 @@ import { readWorkbookFromLocalFile } from "@/utils/readExcel";
 import { flattenObject, unFlattenObject } from "@/utils";
 
 import Editor from "bin-editor-next";
+
 import "brace";
 import "brace/ext/emmet";
 import "brace/ext/language_tools";
@@ -12,7 +13,12 @@ import "brace/theme/xcode";
 
 import { ref } from "vue";
 
-let excelBody: any[]; // excel表格数据
+interface ExcelBody {
+  English: string;
+  [key: string]: unknown;
+}
+
+let excelBody: ExcelBody[]; // excel表格数据
 
 const sourceFile = ref("");
 const targetFile = ref("");
@@ -21,29 +27,29 @@ const languagesList = ref<string[]>([]);
 
 const handleClick = (e: MouseEvent) => {
   if (!sourceFile.value) {
-    alert("请输入源文件");
+    alert("请定制语言模版");
     e.preventDefault();
     return;
   }
 };
 
 const handleFileInputChange = async (e: Event) => {
-  const file = (e.target as HTMLInputElement)!.files![0];
+  const fileList = (e.target as HTMLInputElement).files;
+  if (!fileList) return;
+
+  const file = fileList[0];
 
   try {
     const { data: sheetData } = await readWorkbookFromLocalFile(file);
-
-    console.log("❓ - openFile - sheetData:", sheetData);
-
     const { body, headers_key } = sheetData;
 
     excelBody = body;
 
     languagesList.value = headers_key;
 
-    compilerLanguage();
+    alert("文件解析成功，请选择语言");
   } catch (e) {
-    alert("文件读取失败");
+    alert("文件读取失败，请确认文件格式");
   }
 };
 
@@ -52,10 +58,9 @@ const compilerLanguage = () => {
 
   for (const key in flattenObj) {
     if (Object.prototype.hasOwnProperty.call(flattenObj, key)) {
-      let element = flattenObj[key];
       excelBody.find((item) => {
-        if (item.English === element) {
-          flattenObj[key] = item[selectedLanguage.value || "Chinese"];
+        if (item.English === flattenObj[key]) {
+          flattenObj[key] = item[selectedLanguage.value];
         }
       });
     }
