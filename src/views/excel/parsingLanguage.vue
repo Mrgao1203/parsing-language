@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ref } from "vue";
+
 import { readWorkbookFromLocalFile } from "@/utils/readExcel";
 import { flattenObject, unFlattenObject } from "@/utils";
 
@@ -11,7 +13,11 @@ import "brace/mode/json";
 import "brace/theme/chrome";
 import "brace/theme/xcode";
 
-import { ref } from "vue";
+import Modal from "./BaseModal.vue";
+
+interface StringMap {
+  [key: string]: string;
+}
 
 interface ExcelBody {
   English: string;
@@ -24,6 +30,8 @@ const sourceFile = ref("");
 const targetFile = ref("");
 const selectedLanguage = ref("");
 const languagesList = ref<string[]>([]);
+
+const noKeys = ref<StringMap>({});
 
 const handleClick = (e: MouseEvent) => {
   if (!sourceFile.value) {
@@ -54,17 +62,25 @@ const handleFileInputChange = async (e: Event) => {
 };
 
 const compilerLanguage = () => {
+  noKeys.value = {};
+
   const flattenObj = flattenObject(JSON.parse(sourceFile.value));
 
   for (const key in flattenObj) {
     if (Object.prototype.hasOwnProperty.call(flattenObj, key)) {
-      excelBody.find((item) => {
+      const isHave = excelBody.some((item) => {
         if (item.English === flattenObj[key]) {
           flattenObj[key] = item[selectedLanguage.value];
+          return true;
         }
+        return false;
       });
+      if (!isHave) {
+        noKeys.value[key] = flattenObj[key];
+      }
     }
   }
+
   const unFlattenObj = unFlattenObject(flattenObj);
 
   // 格式化json
@@ -72,6 +88,14 @@ const compilerLanguage = () => {
 };
 
 const handleLanguageChange = () => compilerLanguage();
+
+const noKeysJson = ref("");
+const visible = ref(false);
+const showModal = () => {
+  const obj = unFlattenObject(noKeys.value);
+  noKeysJson.value = JSON.stringify(obj, null, 2);
+  visible.value = true;
+};
 </script>
 
 <template>
@@ -110,21 +134,29 @@ const handleLanguageChange = () => compilerLanguage();
         <div class="cool-neumorphic-item-title">语言模板(仅支持英语)</div>
         <Editor v-model="sourceFile" height="100" lang="json" />
       </div>
-      <select
-        class="cool-neumorphic-language-selector"
-        placeholder="选择语言"
-        v-model="selectedLanguage"
-        @change="handleLanguageChange"
-      >
-        <option disabled selected value>选择语言</option>
-        <option
-          v-for="language in languagesList"
-          :key="language"
-          :value="language"
+      <div>
+        <select
+          class="cool-neumorphic-language-selector"
+          placeholder="选择语言"
+          v-model="selectedLanguage"
+          @change="handleLanguageChange"
         >
-          {{ language }}
-        </option>
-      </select>
+          <option disabled selected value>选择语言</option>
+          <option
+            v-for="language in languagesList"
+            :key="language"
+            :value="language"
+          >
+            {{ language }}
+          </option>
+        </select>
+        <div class="no-keys">
+          未翻译词条
+          <span>{{ Object.keys(noKeys).length || 0 }}</span>
+          个
+          <span class="show" @click="showModal">点击查看</span>
+        </div>
+      </div>
       <div class="cool-neumorphic-item">
         <div class="cool-neumorphic-item-title">目标语言</div>
         <Editor
@@ -136,6 +168,10 @@ const handleLanguageChange = () => compilerLanguage();
         />
       </div>
     </div>
+
+    <Modal title="未翻译词条" v-model:visible="visible">
+      <Editor v-model="noKeysJson" height="700" lang="json" readonly />
+    </Modal>
   </div>
 </template>
 
@@ -226,6 +262,18 @@ const handleLanguageChange = () => compilerLanguage();
 
 .cool-neumorphic-language-selector option[disabled] {
   color: #999999;
+}
+
+.no-keys {
+  margin-top: 8px;
+  font-size: 12px;
+}
+.no-keys .show {
+  color: #3085d6;
+  cursor: pointer;
+}
+.no-keys .show:hover {
+  color: #1f5f8b;
 }
 
 .editor-container {
