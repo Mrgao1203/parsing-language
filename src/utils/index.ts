@@ -1,7 +1,7 @@
 export interface NestedObject {
   [key: string]: any;
 }
-
+const SEPARATOR = "→";
 export function flattenObject(obj: NestedObject, prefix = ""): NestedObject {
   let flattened: NestedObject = {};
 
@@ -20,7 +20,10 @@ export function flattenObject(obj: NestedObject, prefix = ""): NestedObject {
         flattened = { ...flattened, ...flattenedArray };
       } else if (typeof obj[key] === "object" && obj[key] !== null) {
         // 如果属性的值是对象，则递归展平该对象，并在键上添加前缀
-        const nestedFlattened = flattenObject(obj[key], `${prefix}${key}.`);
+        const nestedFlattened = flattenObject(
+          obj[key],
+          `${prefix}${key}${SEPARATOR}`
+        );
         flattened = { ...flattened, ...nestedFlattened };
       } else {
         flattened[`${prefix}${key}`] = obj[key];
@@ -36,12 +39,12 @@ export function unFlattenObject(obj: NestedObject): NestedObject {
 
   for (const key in obj) {
     if (obj.hasOwnProperty.call(obj, key)) {
-      const keys = key.split(".");
+      const keys = key.split(SEPARATOR);
       let currentObject: NestedObject = unFlattened;
 
       for (let i = 0; i < keys.length; i++) {
         const currentKey = keys[i];
-        const isArrayKey = currentKey.match(/(.+)\[(\d+)\]$/);
+        const isArrayKey = currentKey.match("/(" + SEPARATOR + "+)[(d+)]$/");
 
         if (isArrayKey) {
           // 如果键是数组键，则提取数组键和索引
