@@ -14,6 +14,7 @@ dist-ssr
 coverage
 *.local
 
+parsing-excel
 /cypress/videos/
 /cypress/screenshots/
 

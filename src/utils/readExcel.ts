@@ -48,6 +48,7 @@ export function readWorkbookFromLocalFile(file: File): Promise<RespondBody> {
             headers_key: headers_key,
           },
         };
+        console.log("🚀 ~ respondBody:", respondBody);
         resolve(respondBody);
       } catch (e) {
         const respondBody = {

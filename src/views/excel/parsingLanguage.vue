@@ -69,7 +69,10 @@ const compilerLanguage = () => {
   for (const key in flattenObj) {
     if (Object.prototype.hasOwnProperty.call(flattenObj, key)) {
       const isHave = excelBody.some((item) => {
-        if (item.English === flattenObj[key]) {
+        if (
+          item.English === flattenObj[key] ||
+          item["英文"] === flattenObj[key]
+        ) {
           flattenObj[key] = item[selectedLanguage.value];
           return true;
         }
