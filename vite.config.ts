@@ -17,6 +17,7 @@ export default defineConfig({
   plugins: [vue(), vueJsx()],
   server: {
     host: "0.0.0.0",
+    port: 8686,
     hmr: {
       protocol: "ws",
       host: "localhost",
