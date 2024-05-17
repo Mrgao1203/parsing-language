@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 import { readWorkbookFromLocalFile } from "@/utils/readExcel";
-import { flattenObject, unFlattenObject } from "@/utils";
+import { exportFile, flattenObject, unFlattenObject } from "@/utils";
 
 import Editor from "bin-editor-next";
 
@@ -10,8 +10,13 @@ import "brace";
 import "brace/ext/emmet";
 import "brace/ext/language_tools";
 import "brace/mode/json";
+import "brace/mode/javascript";
 import "brace/theme/chrome";
 import "brace/theme/xcode";
+
+import JSZip from "jszip";
+import { saveAs } from "file-saver";
+// import  from ''
 
 import Modal from "./BaseModal.vue";
 
@@ -27,11 +32,29 @@ interface ExcelBody {
 let excelBody: ExcelBody[]; // excel表格数据
 
 const sourceFile = ref("");
+const sourceFileJs = ref("");
 const targetFile = ref("");
 const selectedLanguage = ref("");
 const languagesList = ref<string[]>([]);
 
 const noKeys = ref<StringMap>({});
+
+watch(
+  () => sourceFileJs.value,
+  (v) => {
+    /**
+     * 1. 去除等号前的内容
+     * 2. 去除最后一个分号
+     */
+
+    const json = v.trim().replace(/.*=/g, "").replace(/;$/g, "");
+
+    // 解析字符串为对象
+    const obj = eval("(" + json + ")");
+
+    sourceFile.value = JSON.stringify(obj, null, 2);
+  }
+);
 
 const handleClick = (e: MouseEvent) => {
   if (!sourceFile.value) {
@@ -56,12 +79,14 @@ const handleFileInputChange = async (e: Event) => {
     languagesList.value = headers_key;
 
     alert("文件解析成功，请选择语言");
+
+    initCheckedLanguage();
   } catch (e) {
     alert("文件读取失败，请确认文件格式");
   }
 };
 
-const compilerLanguage = () => {
+const compilerLanguage = (translateLang: string = selectedLanguage.value) => {
   noKeys.value = {};
 
   const flattenObj = flattenObject(JSON.parse(sourceFile.value));
@@ -73,7 +98,7 @@ const compilerLanguage = () => {
           item.English?.trim() === flattenObj[key].trim() ||
           (item["英文"] as string) === flattenObj[key]
         ) {
-          flattenObj[key] = item[selectedLanguage.value];
+          flattenObj[key] = item[translateLang];
           return true;
         }
         return false;
@@ -86,11 +111,19 @@ const compilerLanguage = () => {
 
   const unFlattenObj = unFlattenObject(flattenObj);
 
+  const JSONString = JSON.stringify(unFlattenObj, null, 2);
+
   // 格式化json
-  targetFile.value = JSON.stringify(unFlattenObj, null, 2);
+  targetFile.value = JSONString;
+
+  return JSONString;
 };
 
-const handleLanguageChange = () => compilerLanguage();
+const handleLanguageChange = () => {
+  setDefaultExportFileName();
+  setDefaultExportVariableName();
+  compilerLanguage();
+};
 
 const noKeysJson = ref("");
 const visible = ref(false);
@@ -99,6 +132,75 @@ const showModal = () => {
   noKeysJson.value = JSON.stringify(obj, null, 2);
   visible.value = true;
 };
+
+const exportFileName = ref("");
+const exportVariableName = ref("");
+
+function setDefaultExportFileName() {
+  exportFileName.value = selectedLanguage.value
+    .replace(/ /g, "_")
+    .replace(".", "");
+}
+function setDefaultExportVariableName() {
+  exportVariableName.value = `locale_${selectedLanguage.value}`
+    .replace(/ /g, "_")
+    .replace(".", "");
+}
+
+const visibleDownload = ref(false);
+const openDownFile = async () => {
+  visibleDownload.value = true;
+};
+
+// MARK：批量导出
+const variableNamePrefix = ref("locale_");
+const checkedLanguage = ref<
+  Array<{
+    variableName: string;
+    fileName: string;
+    lang: string;
+    checked: boolean;
+  }>
+>([]);
+function initCheckedLanguage() {
+  languagesList.value.forEach((language) => {
+    checkedLanguage.value.push({
+      variableName: `${variableNamePrefix.value}${language}`
+        .replace(/ /g, "_")
+        .replace(".", ""),
+      fileName: language.replace(/ /g, "_").replace(".", ""),
+      lang: language,
+      checked: false,
+    });
+  });
+}
+function changeFileName(e: Event, index: number) {
+  checkedLanguage.value[
+    index
+  ].variableName = `${variableNamePrefix.value}${checkedLanguage.value[index].fileName}`;
+}
+function downloadSelectFile() {
+  const zip = new JSZip();
+  for (let i = 0; i < checkedLanguage.value.length; i++) {
+    const element = checkedLanguage.value[i];
+    if (element.checked) {
+      console.log("text", compilerLanguage(element.lang));
+      zip.file(
+        `${element.fileName}.js`,
+        `const ${element.variableName} = ${compilerLanguage(element.lang)}`
+      );
+    }
+  }
+
+  zip
+    .generateAsync({ type: "blob" })
+    .then((content) => {
+      saveAs(content, "language.zip");
+    })
+    .catch((e) => {
+      console.error(e);
+    });
+}
 </script>
 
 <template>
@@ -129,13 +231,13 @@ const showModal = () => {
           ></path>
         </svg>
       </div>
-      <span class="cool-neumorphic-file-title">选择文件</span>
+      <span class="cool-neumorphic-file-title">导入翻译文档</span>
     </div>
 
     <div class="cool-neumorphic-container">
       <div class="cool-neumorphic-item">
-        <div class="cool-neumorphic-item-title">语言模板(仅支持英语)</div>
-        <Editor v-model="sourceFile" height="100" lang="json" />
+        <div class="cool-neumorphic-item-title">语言模板(英语)</div>
+        <Editor v-model="sourceFileJs" height="100" lang="javascript" />
       </div>
       <div>
         <select
@@ -161,7 +263,57 @@ const showModal = () => {
         </div>
       </div>
       <div class="cool-neumorphic-item">
-        <div class="cool-neumorphic-item-title">目标语言</div>
+        <div class="cool-neumorphic-item-title">
+          <span>目标语言</span>
+          <input
+            type="text"
+            v-model="exportFileName"
+            class="export-name"
+            placeholder="文件名"
+          />
+          <input
+            type="text"
+            v-model="exportVariableName"
+            class="export-name"
+            placeholder="变量名"
+          />
+          <div class="btn-group">
+            <button
+              @click="
+                exportFile(
+                  `const ${exportVariableName} = ${targetFile}`,
+                  `${exportFileName}.js`,
+                  'js'
+                )
+              "
+              :disabled="!selectedLanguage"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+            </button>
+            <!-- 批量下载 -->
+            <button
+              @click="openDownFile"
+              class="download-files"
+              :disabled="!selectedLanguage"
+            >
+              批量下载
+            </button>
+          </div>
+        </div>
         <Editor
           v-model="targetFile"
           height="100"
@@ -175,10 +327,171 @@ const showModal = () => {
     <Modal title="未翻译词条" v-model:visible="visible">
       <Editor v-model="noKeysJson" height="700" lang="json" readonly />
     </Modal>
+
+    <Modal
+      title="批量下载"
+      v-model:visible="visibleDownload"
+      :width="850"
+      body-class="table-body"
+    >
+      <div class="select-download-btn">
+        <button @click="downloadSelectFile">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+        </button>
+        <div>前缀： <input type="text" v-model="variableNamePrefix" /></div>
+      </div>
+      <div class="download-container">
+        <table class="neumorphism-table">
+          <thead>
+            <tr>
+              <th style="width: 60px">选择</th>
+              <th style="width: 240px">语言</th>
+              <th style="width: 200px">文件名</th>
+              <th style="width: 200px">变量名(前缀+文件名)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(language, key) in checkedLanguage" :key="key">
+              <td style="width: 60px">
+                <input
+                  type="checkbox"
+                  class="neumorphism-checkbox"
+                  v-model="language.checked"
+                />
+              </td>
+              <td style="width: 240px">
+                <span class="language-name">{{ language.lang }}</span>
+              </td>
+              <td style="width: 200px">
+                <span class="language-input">
+                  <input
+                    type="text"
+                    v-model="checkedLanguage[key].fileName"
+                    @input="(e) => changeFileName(e, key)"
+                  />
+                </span>
+              </td>
+              <td style="width: 200px">
+                <span class="language-input">
+                  <input
+                    disabled
+                    type="text"
+                    :value="variableNamePrefix + language.fileName"
+                  />
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </Modal>
   </div>
 </template>
 
 <style scoped>
+.checkout-container {
+  position: relative;
+}
+.neumorphism-table {
+  display: flex;
+  flex-direction: column;
+  background: #f0f0f0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.neumorphism-table tbody {
+  overflow: auto;
+}
+.neumorphism-table tr {
+  width: 100%;
+}
+.neumorphism-table th,
+.neumorphism-table td {
+  padding: 10px;
+  background: #f0f0f0;
+}
+
+.neumorphism-table th {
+  text-align: left;
+  font-weight: bold;
+}
+:deep(.table-body) {
+  display: flex;
+  flex-direction: column;
+}
+button {
+  background: #e0e0e0;
+  border: none;
+  padding: 2px 10px;
+  border-radius: 8px;
+  box-shadow: 8px 8px 16px #b8b8b8, -8px -8px 16px #ffffff;
+  transition: all 0.2s ease-in-out;
+  font-size: 14px;
+  color: #333333;
+}
+button[disabled] {
+  background: #f0f0f0;
+  color: #999999;
+}
+
+button:active {
+  box-shadow: 3px 3px 6px #b8b8b8, -3px -3px 6px #ffffff;
+}
+.select-download-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.btn-group {
+  display: flex;
+  gap: 20px;
+}
+.download-container {
+  height: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  .download-item {
+    display: flex;
+    gap: 20px;
+    .language-name {
+      width: 150px;
+    }
+    .language-input {
+      width: 200px;
+    }
+  }
+}
+input[type="text"] {
+  background: #e0e0e0;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
+}
+input[type="text"]:focus {
+  box-shadow: 3px 3px 6px #b8b8b8, -3px -3px 6px #ffffff;
+}
 .cool-neumorphic-file-converter {
   padding: 20px;
   height: calc(100vh - 70px);
@@ -240,6 +553,8 @@ const showModal = () => {
 }
 
 .cool-neumorphic-item-title {
+  display: flex;
+  justify-content: space-between;
   color: #333333;
   font-size: 16px;
   font-weight: bold;

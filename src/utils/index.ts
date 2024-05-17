@@ -81,3 +81,33 @@ export function unFlattenObject(obj: NestedObject): NestedObject {
 
   return unFlattened;
 }
+export const exportFile = (
+  content: string | Blob,
+  fileName: string,
+  mimeType: string
+) => {
+  if (content === undefined || content === "") {
+    throw new Error("Content is empty");
+  }
+  let blob: Blob;
+  // 创建一个 Blob 对象
+  if (typeof content === "string") {
+    blob = new Blob([content], { type: mimeType });
+  } else {
+    blob = content;
+  }
+  // 创建一个 URL
+  const url = URL.createObjectURL(blob);
+  console.log("🚀 ~ url:", url);
+
+  // 创建一个 a 标签
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = fileName.replace(/ /g, "_");
+
+  // 触发下载
+  link.click();
+
+  // 释放 URL
+  URL.revokeObjectURL(url);
+};

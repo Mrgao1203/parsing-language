@@ -5,9 +5,12 @@ withDefaults(
   defineProps<{
     title: string;
     visible: boolean;
+    width: number;
+    bodyClass?: string;
   }>(),
   {
     visible: false,
+    width: 900,
   }
 );
 const emits = defineEmits(["update:visible"]);
@@ -18,13 +21,25 @@ const close = () => {
 </script>
 
 <template>
-  <div class="modal" :style="{ display: visible ? 'block' : 'none' }">
-    <div class="modal-content">
+  <div
+    class="modal"
+    :style="{
+      display: visible ? 'block' : 'none',
+    }"
+  >
+    <div
+      class="modal-content"
+      :style="{
+        width: width + 'px',
+      }"
+    >
       <div class="modal-title">
         <div>{{ title }}</div>
         <span class="close" @click="close">&times;</span>
       </div>
-      <slot></slot>
+      <div class="modal-body" :class="bodyClass">
+        <slot></slot>
+      </div>
     </div>
   </div>
 </template>
@@ -47,10 +62,9 @@ const close = () => {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #ffffff;
-  padding: 10px 20px;
+  padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  width: 900px;
 }
 
 .modal-title {
@@ -59,7 +73,10 @@ const close = () => {
   justify-content: space-between;
   font-size: 16px;
 }
-
+.modal-body {
+  height: 500px;
+  overflow: auto;
+}
 .close {
   color: #aaaaaa;
   float: right;
