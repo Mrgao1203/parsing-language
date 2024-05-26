@@ -95,8 +95,8 @@ const compilerLanguage = (translateLang: string = selectedLanguage.value) => {
       const isHave = excelBody.some((item) => {
         if (
           item.English?.trim() === flattenObj[key].trim() ||
-          item["英文"].trim() === flattenObj[key].trim() ||
-          item?.en.trim() === flattenObj[key].trim()
+          item["英文"]?.trim() === flattenObj[key].trim() ||
+          item?.en?.trim() === flattenObj[key].trim()
         ) {
           flattenObj[key] = item[translateLang];
           return true;
