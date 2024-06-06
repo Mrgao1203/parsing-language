@@ -17,7 +17,8 @@ import "brace/theme/xcode";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 
-import Modal from "./BaseModal.vue";
+import Modal from "../../components/BaseModal.vue";
+import GitHubCorners from "../../components/GitHubCorners.vue";
 
 interface StringMap {
   [key: string]: string;
@@ -174,7 +175,7 @@ function initCheckedLanguage() {
     });
   });
 }
-function changeFileName(e: Event, index: number) {
+function changeFileName(_e: Event, index: number) {
   checkedLanguage.value[
     index
   ].variableName = `${variableNamePrefix.value}${checkedLanguage.value[index].fileName}`;
@@ -201,29 +202,11 @@ function downloadSelectFile() {
       console.error(e);
     });
 }
-const visibleHelp = ref(true);
 </script>
 
 <template>
   <div class="cool-neumorphic-file-converter">
-    <a class="help" href="https://github.com/Mrgao1203/parsing-language/">
-      <svg
-        t="1715998829590"
-        class="icon"
-        viewBox="0 0 1627 1024"
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-        p-id="1473"
-        width="50"
-        height="50"
-      >
-        <path
-          d="M1367.503975 0H0l1627.980922 1024V260.476948c0-144.076312-116.400636-260.476948-260.476947-260.476948z m-117.214627 573.049285c-10.581876 9.767886-22.791733 13.837838-36.629571 13.837837-14.651828 0-26.047695-4.883943-35.81558-14.651828-9.767886-9.767886-15.465819-21.163752-15.465819-35.81558s4.883943-26.861685 15.465819-35.81558c8.139905-8.953895 20.349762-13.837838 35.00159-13.837838s27.675676 4.883943 36.629571 13.837838c9.767886 8.953895 14.651828 21.163752 14.651828 35.81558 0.81399 14.651828-4.069952 26.861685-13.837838 36.629571z m87.09698-254.779015c-6.511924 8.139905-23.605723 23.605723-52.09539 48.025437-10.581876 9.767886-18.721781 19.535771-23.605723 28.489667-5.697933 10.581876-8.953895 23.605723-8.953895 37.443561v10.581876c0 4.069952-3.255962 6.511924-6.511924 6.511923h-65.119237c-4.069952 0-6.511924-3.255962-6.511924-6.511923v-10.581876c0-23.605723 4.069952-43.955485 12.209857-60.235294 8.953895-17.90779 31.745628-42.327504 70.81717-77.329094l9.767886-11.395867c9.767886-12.209857 14.651828-26.047695 14.651828-39.885532 0-18.721781-4.883943-34.187599-15.465819-44.769476-10.581876-10.581876-26.047695-16.279809-46.397456-16.279809-25.233704 0-43.141494 7.325914-53.72337 22.791733-9.767886 13.023847-15.465819 33.373609-15.465819 58.607313 0 4.069952-3.255962 6.511924-6.511924 6.511924h-64.305246c-4.069952 0-6.511924-3.255962-6.511924-6.511924 0-45.583466 13.837838-82.213037 40.699523-109.074721s63.491256-40.699523 109.888712-40.699523c40.699523 0 74.887122 11.395866 99.306837 34.187599 25.233704 22.791733 38.257552 53.72337 38.257551 91.980922-0.81399 30.931638-8.953895 56.979332-24.419713 78.143084z"
-          fill="#FC9701"
-          p-id="1474"
-        ></path>
-      </svg>
-    </a>
+    <GitHubCorners />
     <div class="cool-neumorphic-file-input-container">
       <input
         id="file-input"
@@ -284,18 +267,24 @@ const visibleHelp = ref(true);
       <div class="cool-neumorphic-item">
         <div class="cool-neumorphic-item-title">
           <span>目标语言</span>
-          <input
-            type="text"
-            v-model="exportFileName"
-            class="export-name"
-            placeholder="文件名"
-          />
-          <input
-            type="text"
-            v-model="exportVariableName"
-            class="export-name"
-            placeholder="变量名"
-          />
+          <div>
+            <span class="label">文件名：</span>
+            <input
+              type="text"
+              v-model="exportFileName"
+              class="export-name"
+              placeholder="文件名"
+            />
+          </div>
+          <div>
+            <span class="label">变量名：</span>
+            <input
+              type="text"
+              v-model="exportVariableName"
+              class="export-name"
+              placeholder="变量名"
+            />
+          </div>
           <div class="btn-group">
             <button
               @click="
@@ -422,6 +411,9 @@ const visibleHelp = ref(true);
 </template>
 
 <style scoped>
+.label {
+  font-size: 12px;
+}
 .help {
   position: absolute;
   top: -9px;
@@ -580,6 +572,7 @@ input[type="text"]:focus {
 
 .cool-neumorphic-item-title {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   color: #333333;
   font-size: 16px;
