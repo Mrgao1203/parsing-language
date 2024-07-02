@@ -31,6 +31,8 @@ interface ExcelBody {
 
 let excelBody: ExcelBody[]; // excel表格数据
 
+// 解析类型
+const parseType = ref("Object");
 const sourceFile = ref("");
 const sourceFileJs = ref("");
 const targetFile = ref("");
@@ -47,12 +49,25 @@ watch(
      * 2. 去除最后一个分号
      */
 
-    const json = v.trim().replace(/.*=/g, "").replace(/;$/g, "");
+    if (parseType.value === "Object") {
+      const json = v.trim().replace(/.*=/g, "").replace(/;$/g, "");
+      console.log("🚀 ~ json:", json);
 
-    // 解析字符串为对象
-    const obj = eval("(" + json + ")");
-
-    sourceFile.value = JSON.stringify(obj, null, 2);
+      try {
+        // 解析字符串为对象
+        const obj = eval("(" + json + ")");
+        sourceFile.value = JSON.stringify(obj, null, 2);
+      } catch (e) {
+        console.error("语言模板格式错误，请打开控制台检查");
+      }
+    } else {
+      try {
+        JSON.parse(v);
+        sourceFile.value = v;
+      } catch (e) {
+        console.error("不是JSON格式");
+      }
+    }
   }
 );
 
@@ -238,7 +253,29 @@ function downloadSelectFile() {
 
     <div class="cool-neumorphic-container">
       <div class="cool-neumorphic-item">
-        <div class="cool-neumorphic-item-title">语言模板(英语)</div>
+        <div class="cool-neumorphic-item-title">
+          语言模板(英语)
+          <div class="radio-group">
+            <label for="">
+              <span>对象格式</span>
+              <input
+                type="radio"
+                name="type"
+                value="Object"
+                v-model="parseType"
+              />
+            </label>
+            <label for="">
+              <span>JSON格式</span>
+              <input
+                type="radio"
+                name="type"
+                value="Json"
+                v-model="parseType"
+              />
+            </label>
+          </div>
+        </div>
         <Editor v-model="sourceFileJs" height="100" lang="javascript" />
       </div>
       <div>
@@ -411,6 +448,20 @@ function downloadSelectFile() {
 </template>
 
 <style scoped>
+.radio-group {
+  display: flex;
+  gap: 10px;
+}
+.radio-group label {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+.radio-group input {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
 .label {
   font-size: 12px;
 }
