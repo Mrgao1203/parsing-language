@@ -217,6 +217,12 @@ function downloadSelectFile() {
       console.error(e);
     });
 }
+const checkedAll = ref(false);
+function changeCheckedAll() {
+  checkedLanguage.value.forEach((item) => {
+    item.checked = checkedAll.value;
+  });
+}
 </script>
 
 <template>
@@ -403,7 +409,16 @@ function downloadSelectFile() {
         <table class="neumorphism-table">
           <thead>
             <tr>
-              <th style="width: 60px">选择</th>
+              <th style="width: 90px">
+                <input
+                  type="checkbox"
+                  class="neumorphism-checkbox"
+                  v-model="checkedAll"
+                  @change="changeCheckedAll"
+                />
+                <!-- TODO:全选按钮 -->
+                选择
+              </th>
               <th style="width: 240px">语言</th>
               <th style="width: 200px">文件名</th>
               <th style="width: 200px">变量名(前缀+文件名)</th>
@@ -411,7 +426,7 @@ function downloadSelectFile() {
           </thead>
           <tbody>
             <tr v-for="(language, key) in checkedLanguage" :key="key">
-              <td style="width: 60px">
+              <td style="width: 90px">
                 <input
                   type="checkbox"
                   class="neumorphism-checkbox"
